@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="querycopy.js"></script>
+
+</head>
+<body>
+    <div class="input-box">
+        <form>
+        <input type="text" placeholder="Search a disease.." id="search-input">
+        <span class="dna">
+            <i class="uil uil-dna dna-icon"></i>
+        </span>
+
+
+        <input name="submit" type="submit" id="submit" value="submit">
+        </form>
+    </div>
+  <script>
+        async function fetchData(search_input, query) {
+            const response = await fetch(`https://bfx3.aap.jhu.edu/final/search?search_input=${search_input}&query=${query}`);
+            const data = await response.json();
+            return data;
+        }
+
+        document.getElementById('search-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const search_input = document.getElementById('search-input').value;
+            const data = await fetchData(search_input, 'gene_term');
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            data.values.forEach(value => {
+                const resultElement = document.createElement('div');
+                resultElement.textContent = `SpeciesName: ${value.SpeciesName}, DBObjectSymbol: ${value.DBObjectSymbol}, DOtermName: ${value.DOtermName}`;
+                resultsDiv.appendChild(resultElement);
+            });
+        });
+    </script>
+</body>
+</html>
