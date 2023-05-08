@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F0F8FF;
+}
+
+.input-box {
+  position: relative;
+  height: 55px;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 30px;
+  border-radius: 6px;
+  background-color: #FFFAFA;
+  display: flex;
+  align-items: center;
+}
+
+.input-box  {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  outlier: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #008000;
+  background-color: transparent;
+}
+
+.input-box input[type="submit"] {
+  margin-left: auto;
+  margin-top: 55px;
+  margin-right: 50px;
+  background-color: #008000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.input-box input[type="submit"]:hover {
+  background-color: #006400;
+}
+
+#.input-box .dna {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  border-radius: 6px 0 0 6px;
+  background-color: #FFFAFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dna .dna-icon {
+  font-size: 30px;
+  color: #008000;
