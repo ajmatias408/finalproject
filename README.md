@@ -21,8 +21,12 @@ https://www.alliancegenome.org/downloads -> All disease associations
 # Files
 
 alliancegenome.html -> HTML source
+
 searchquery.cgi -> Used to query the data
+
 sourcecode.py -> Where the table is located (within mysql amatias1->DiseaseAllianceGenome)
+
 sourcescript. -> Used to connect the data and HTML
+
 style.css -> basic styling to make it look nicer
 
