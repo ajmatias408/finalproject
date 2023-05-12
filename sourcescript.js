@@ -1,20 +1,37 @@
-async function fetchData(search_input, query) {
-  const response = await fetch(`http://bfx3.aap.jhu.edu/amatias1/final/sourcecode.py?search_input=${search_input}&query=${query}`);
-  const data = await response.json();
-  return data;
+function executeQuery() {
+  $('#results').hide();
+  $('tbody').empty();
+  var inputToString = $('#search-form').serialize();
+  console.log(inputToString);
+
+  $.ajax({
+    url: 'searchquery.cgi',
+    dataType: 'json',
+    data: inputToString,
+    success: function (data, jqXHR) {
+      executeJSON(data);
+    },
+    error: function (jqXHR, errorThrown) {
+      alert("Unable to find disease.");
+    }
+  });
 }
 
-document.getElementById('search-form').addEventListener('submit', async (event) => {
-  event.preventDefault();
-  const search_input = document.getElementById('search-input').value;
-  const data = await fetchData(search_input, 'gene_term');
+function executeJSON(data) {
+  $('#count').text(data.count);
+  var succeeding_row = 1;
+  $.each(data.values, function (i, item) {
+    var current_row = succeeding_row++;
+    $('<tr/>', { id: current_row }).appendTo('tbody');
+    $('<td/>', { text: item.SpeciesName }).appendTo('#' + current_row);
+    $('<td/>', { text: item.DOtermName }).appendTo('#' + current_row);
+  });
+  $('#results').show();
+}
 
-  const resultsDiv = document.getElementById('results');
-  resultsDiv.innerHTML = '';
-
-  data.values.forEach(value => {
-    const resultElement = document.createElement('div');
-    resultElement.textContent = `SpeciesName: ${value.SpeciesName}, DBObjectSymbol: ${value.DBObjectSymbol}, DOtermName: ${value.DOtermName}`;
-    resultsDiv.appendChild(resultElement);
+$(document).ready(function () {
+  $('#submit').click(function () {
+    executeQuery();
+    return false;
   });
 });
