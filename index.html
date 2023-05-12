@@ -1,37 +1,43 @@
-function executeQuery() {
-  $('#results').hide();
-  $('tbody').empty();
-  var inputToString = $('#search-form').serialize();
-  console.log(inputToString);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="sourcescript.js">
+    </script>
+</head>
+<body>
+    <div class="input-box">
+        <form id="search-form" action="" method="">
+        <input type="text" placeholder="Search a disease.." name="search_input" id="search-input">
+        <span class="dna">
+            <i class="uil uil-dna dna-icon"></i>
+        </span>
 
-  $.ajax({
-    url: 'searchquery.cgi',
-    dataType: 'json',
-    data: inputToString,
-    success: function (data, jqXHR) {
-      executeJSON(data);
-    },
-    error: function (jqXHR, errorThrown) {
-      alert("Unable to find disease.");
-    }
-  });
-}
 
-function executeJSON(data) {
-  $('#count').text(data.count);
-  var next_row_num = 1;
-  $.each(data.values, function (i, item) {
-    var this_row_id = 'resultrow' + next_row_num++;
-    $('<tr/>', { id: this_row_id }).appendTo('tbody');
-    $('<td/>', { text: item.SpeciesName }).appendTo('#' + this_row_id);
-    $('<td/>', { text: item.DOtermName }).appendTo('#' + this_row_id);
-  });
-  $('#results').show();
-}
+        <input name="submit" type="submit" id="submit" value="submit">
+        </form>
 
-$(document).ready(function () {
-  $('#submit').click(function () {
-    executeQuery();
-    return false;
-  });
-});
+
+    </div>
+        <section> id='output'>
+        <p>
+            <span id='count'>0</span> diseases found.
+        </p>
+            <thead>
+            <tr>
+                <td>Species Name</td>
+                <td>DOTerm Name</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </section>
+
+</body>
+</html>
