@@ -1,5 +1,5 @@
 function executeQuery() {
-  $('#results').hide();
+  $('#output').hide();
   $('tbody').empty();
   var inputToString = $('#search-form').serialize();
   console.log(inputToString);
@@ -26,7 +26,7 @@ function executeJSON(data) {
     $('<td/>', { text: item.SpeciesName }).appendTo('#' + current_row);
     $('<td/>', { text: item.DOtermName }).appendTo('#' + current_row);
   });
-  $('#results').show();
+  $('#output').show();
 }
 
 $(document).ready(function () {
