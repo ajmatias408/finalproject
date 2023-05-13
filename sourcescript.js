@@ -27,10 +27,10 @@ function populateData(data) {
   let rowIncrement = 1;
 
   $.each(data.values, function(i, value) {
-    const rowId = 'row-' + rowIncrement++;
-    $('<tr>', { id: rowId }).appendTo('tbody');
-    $('<td>', { text: value.SpeciesName }).appendTo('#' + rowId);
-    $('<td>', { text: value.DOtermName }).appendTo('#' + rowId);
+    var rowId = 'row-' + rowIncrement++;
+    $('<tr>', { "id": rowId }).appendTo('tbody');
+    $('<td>', { "text": value.SpeciesName + " |" }).appendTo('#' + rowId);
+    $('<td>', { "text": value.DOtermName }).appendTo('#' + rowId);
   });
 
   $('#count').text(data.count);
