@@ -14,7 +14,7 @@ The modular information system architecture serves diverse user communities, inc
 
 # Usage
 
-The usage of this program is very straight forward. Simply click this link http://bfx3.aap.jhu.edu/amatias1/final/alliancegenome.html?search_input and search for a disease. This way, you are able to see what correlation different diseases have. Note that there are approximately 1.4M different types of disease variations, but I made it simple so that you can briefly see what (eg. Intestinal Atresia) is correlated with.
+The usage of this program is very straight forward. Simply click this link http://bfx3.aap.jhu.edu/amatias1/final/alliancegenome.html?search_input and search for a disease. This way, you are able to see what correlation different diseases have. Note that there are approximately 1.4M different types of disease variations, but I made it simple so that you can briefly see what (type in: intestinal atresia) is correlated with.
 
 https://www.alliancegenome.org/downloads -> All disease associations
 
