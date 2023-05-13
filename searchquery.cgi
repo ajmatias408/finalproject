@@ -11,7 +11,7 @@ def main():
     print("Content-Type: application/json")
     print()
     form = cgi.FieldStorage()
-    term = form.getvalue('search_input')
+    search = form.getvalue('search_input')
 
     connection = mysql.connector.connect(user='amatias1', password='password', host='localhost',
                                          database='FinalProject')
@@ -19,7 +19,7 @@ def main():
 
     cursor.execute(
         "SELECT SpeciesName, DBObjectSymbol, DOtermName FROM DiseaseAllianceCombined WHERE DOtermName LIKE %s",
-        ("%" + term + "%",)
+        ("%" + search + "%",)
     )
 
     query_values = {'count': 0, 'values': list()}
