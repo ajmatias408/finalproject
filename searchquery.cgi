@@ -9,6 +9,7 @@ import json
 
 def main():
     print("Content-Type: application/json")
+    print()
     form = cgi.FieldStorage()
     term = form.getvalue('search_input')
 
@@ -17,7 +18,9 @@ def main():
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT SpeciesName, DBObjectSymbol, DOtermName FROM DiseaseAllianceCombined WHERE DOtermName LIKE '%"+term+"%'")
+        "SELECT SpeciesName, DBObjectSymbol, DOtermName FROM DiseaseAllianceCombined WHERE DOtermName LIKE %s",
+        ("%" + term + "%",)
+    )
 
     query_values = {'count': 0, 'values': list()}
     for (SpeciesName, DBObjectSymbol, DOtermName) in cursor:
