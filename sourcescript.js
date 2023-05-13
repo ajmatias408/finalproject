@@ -1,37 +1,38 @@
-function executeQuery() {
+$(document).ready(function() {
+  $('#submit').on('click', function(e) {
+    e.preventDefault();
+    fetchData();
+  });
+});
+
+function fetchData() {
+  const formSerialized = $('#search-form').serialize();
   $('#output').hide();
   $('tbody').empty();
-  var inputToString = $('#search-form').serialize();
-  console.log(inputToString);
 
   $.ajax({
-    url: 'searchquery.cgi',
+    url: './searchquery.cgi',
     dataType: 'json',
-    data: inputToString,
-    success: function (data, jqXHR) {
-      executeJSON(data);
+    data: formSerialized,
+    success: function(response) {
+      populateData(response);
     },
-    error: function (jqXHR, errorThrown) {
-      alert("Unable to find disease.");
+    error: function() {
+      alert("Error: Unable to find disease.");
     }
   });
 }
 
-function executeJSON(data) {
-  $('#count').text(data.count);
-  var succeeding_row = 1;
-  $.each(data.values, function (i, item) {
-    var current_row = succeeding_row++;
-    $('<tr/>', { id: current_row }).appendTo('tbody');
-    $('<td/>', { text: item.SpeciesName }).appendTo('#' + current_row);
-    $('<td/>', { text: item.DOtermName }).appendTo('#' + current_row);
+function populateData(data) {
+  let rowIncrement = 1;
+
+  $.each(data.values, function(i, value) {
+    const rowId = 'row-' + rowIncrement++;
+    $('<tr>', { id: rowId }).appendTo('tbody');
+    $('<td>', { text: value.SpeciesName }).appendTo('#' + rowId);
+    $('<td>', { text: value.DOtermName }).appendTo('#' + rowId);
   });
+
+  $('#count').text(data.count);
   $('#output').show();
 }
-
-$(document).ready(function () {
-  $('#submit').click(function () {
-    executeQuery();
-    return false;
-  });
-});
